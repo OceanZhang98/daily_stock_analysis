@@ -1,0 +1,13 @@
+name: Test Oceanstock Secret
+on:
+  workflow_dispatch:
+
+jobs:
+  test-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use oceanstock Secret
+        run: |
+          echo "测试 Secret 引用：${{ secrets.oceanstock }}"
+          export OCEAN_STOCK=${{ secrets.oceanstock }}
+          echo "环境变量方式：$OCEAN_STOCK"
