@@ -49,7 +49,16 @@ from src.core.market_review import run_market_review
 from src.webui_frontend import prepare_webui_frontend_assets
 from src.config import get_config, Config
 from src.logging_config import setup_logging
+import os
 
+# 读取GitHub Actions中传递的Secret
+oceanstock_secret = os.getenv("OCEAN_STOCK_SECRET")
+# 若Secret是Tushare Token，直接赋值使用
+if oceanstock_secret:
+    TUSHARE_TOKEN = oceanstock_secret
+    print("成功加载Oceanstock Secret（Tushare Token）")
+else:
+    print("未配置Oceanstock Secret，使用默认配置")
 
 logger = logging.getLogger(__name__)
 
